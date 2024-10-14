@@ -11,14 +11,14 @@
 #define LGFONCTION 20
 #define LGFICHIER 21
 
-typedef struct Client;
+typedef struct
 {
     char nom[LGNOM + 1];
     char prenom[LGPRENOM + 1];
     int age;
     char tel[LGTEL + 1];
     char fonction[LGFONCTION + 1]; // Champ fonction
-};
+} Client;
 
 void supprimer_nouvelle_ligne(char *chaine);
 void afficher_agenda_actuel(const char *nomfich);
@@ -28,3 +28,5 @@ void lire_par_numero(FILE *fichier);
 void afficher_les_enregistrements(FILE *fichier);
 FILE *ouvrir_agenda(char *nomfich, const char *mode);
 FILE *creer_agenda(char *nomfich);
+
+#endif
