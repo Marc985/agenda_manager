@@ -170,3 +170,33 @@ FILE *creer_agenda(char *nomfich)
     }
     return fichier;
 }
+void lire_enregistrement_par_prefixe(FILE *fichier)
+{
+    Client client;
+    char prefixe[LGNOM + 1];
+    int trouve = 0;
+
+    printf("Quel préfixe recherchez-vous : ");
+    fgets(prefixe, LGNOM + 1, stdin);
+    supprimer_nouvelle_ligne(prefixe);
+
+    rewind(fichier);
+
+    while (fread(&client, sizeof(Client), 1, fichier))
+    {
+        if (strncmp(prefixe, client.nom, strlen(prefixe)) == 0) // pour comparer le prefixe saisie par l'utilisateur et le nom
+        {
+            trouve = 1;
+            printf("\nNom : %s\n", client.nom);
+            printf("Prénom : %s\n", client.prenom);
+            printf("Âge : %d\n", client.age);
+            printf("Téléphone : %s\n", client.tel);
+            printf("Fonction : %s\n", client.fonction);
+        }
+    }
+
+    if (!trouve)
+    {
+        printf("-- Aucun enregistrement trouvé avec le préfixe '%s' --\n", prefixe);
+    }
+}

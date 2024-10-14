@@ -15,7 +15,8 @@ int main(int argc, char const *argv[])
         printf("5. Lire un enregistrement par numéro\n");
         printf("6. Afficher tous les enregistrements\n");
         printf("7. Fermer l'agenda\n");
-        printf("8. Quitter\n");
+        printf("8. Lire les engregistrements par une chaine de  caractere donnee\n");
+        printf("9. Quitter\n");
         printf("Votre choix : ");
         scanf("%d", &choix);
         getchar(); // Consommer le caractère de nouvelle ligne après scanf
@@ -106,8 +107,19 @@ int main(int argc, char const *argv[])
                 printf("Erreur : aucun agenda n'est ouvert.\n");
             }
             break;
-
         case 8:
+            if (fichier == NULL)
+            {
+                printf("Erreur : aucun agenda n'est ouvert.\n");
+            }
+            else
+            {
+                lire_enregistrement_par_prefixe(fichier);
+                afficher_agenda_actuel(nomfich);
+            }
+            break;
+
+        case 9:
             if (fichier != NULL)
             {
                 fclose(fichier);
@@ -120,7 +132,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
-    } while (choix != 8);
+    } while (choix != 9);
 
     return 0;
 }

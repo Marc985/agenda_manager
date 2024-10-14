@@ -28,5 +28,6 @@ void lire_par_numero(FILE *fichier);
 void afficher_les_enregistrements(FILE *fichier);
 FILE *ouvrir_agenda(char *nomfich, const char *mode);
 FILE *creer_agenda(char *nomfich);
+void lire_enregistrement_par_prefixe(FILE *fichier);
 
 #endif
